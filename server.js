@@ -1,12 +1,14 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 
 import db from "./config/db.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
+import patientRoutes from "./routes/patientRoutes.js";
 
-dotenv.config();
-
+console.log(process.env.DATABASE_URL);
 const app = express();
 
 app.use(cors());
@@ -19,6 +21,7 @@ db.connect()
 
 //API routes
 app.use("/api/doctors", doctorRoutes);
+app.use("/api/patients", patientRoutes);
 
 
 
