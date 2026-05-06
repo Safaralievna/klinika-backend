@@ -98,9 +98,9 @@ const loginDoctor = async (req,res) => {
         const token = jwt.sign(
             {
                 id: doctor.rows[0].id,
-                email: doctor.rows[0].email
+                role: doctor.rows[0].role
             },
-            "secretkey",
+            process.env.JWT_SECRET,
             {expiresIn: "1d"}
         );
 

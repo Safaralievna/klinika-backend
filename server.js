@@ -31,12 +31,19 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/prescriptions", prescriptionRoutes);
 app.use("/api/medicines", medicineRoutes);
 
-
+app.use((req, res) => {
+  res.status(404).json({
+    message: "Route not found"
+  });
+});
 
 
 app.get("/", (req, res) => {
-  res.send("Klinika API ishlayapti");
+  res.json({
+    message: "Klinika API ishlayapti"
+  });
 });
+
 
 const PORT = process.env.PORT || 5000;
 
