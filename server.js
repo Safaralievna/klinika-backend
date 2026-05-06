@@ -7,6 +7,10 @@ import cors from "cors";
 import db from "./config/db.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import patientRoutes from "./routes/patientRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
+import prescriptionRoutes from "./routes/prescriptionRoutes.js";
+import medicineRoutes from "./routes/medicineRoutes.js";
 
 console.log(process.env.DATABASE_URL);
 const app = express();
@@ -22,6 +26,10 @@ db.connect()
 //API routes
 app.use("/api/doctors", doctorRoutes);
 app.use("/api/patients", patientRoutes);
+app.use("/api/appointments", appointmentRoutes);
+app.use("/api/payments", paymentRoutes);
+app.use("/api/prescriptions", prescriptionRoutes);
+app.use("/api/medicines", medicineRoutes);
 
 
 

@@ -2,6 +2,7 @@ import db from "../config/db.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+
 //Register doctor
 
 const registerDoctor = async (req, res) => {
@@ -117,7 +118,43 @@ const loginDoctor = async (req,res) => {
     }
 };
 
+
+const getCurrentDoctor = async (req, res) => {
+
+  try {
+
+    const doctor = await db.query(
+      `
+      SELECT
+      id,
+      full_name,
+      specialization,
+      phone,
+      email,
+      experience_year,
+      room_number
+
+      FROM doctors
+
+      WHERE id = $1
+      `,
+      [req.user.id]
+    );
+
+    res.json(doctor.rows[0]);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+};
+
+
 export  {
     registerDoctor,
-    loginDoctor
+    loginDoctor,
+    getCurrentDoctor
 };
